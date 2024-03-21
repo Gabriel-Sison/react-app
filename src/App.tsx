@@ -1,7 +1,8 @@
 import Alert from "./components/Alert";
 import Button from "./components/Button";
+import FoodInput from "./components/FoodInput";
 import Input from "./components/Input.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./basic.css";
 import useFetch from "./useFetch.js";
@@ -11,6 +12,7 @@ function App() {
   const [pressed, setPressed] = useState(false);
   const [name, setName] = useState(" ");
   const [foodSort, setFoodSort] = useState("");
+  const db = "http://localhost:8000/ingredients";
 
   var calories = 2000;
   var goalCal = 2000;
@@ -21,12 +23,7 @@ function App() {
   }
 
   // npx json-server --watch data/db.json --port 8000
-  const {
-    data: list,
-    setData,
-    isPending,
-    error,
-  } = useFetch("http://localhost:8000/ingredients" + foodSort);
+  const { data: list, setData, isPending, error } = useFetch(db + foodSort);
 
   async function handleDelete(
     id: string,
@@ -40,11 +37,10 @@ function App() {
       id: any;
     }
   ) {
-    await fetch("http://localhost:8000/ingredients/" + id, {
+    await fetch(db + "/" + id, {
       method: "DELETE",
     });
-
-    await fetch("http://localhost:8000/ingredients", {
+    await fetch(db, {
       method: "POST",
       body: JSON.stringify({
         name: item.name,
@@ -58,7 +54,7 @@ function App() {
       }),
     });
 
-    await fetch("http://localhost:8000/ingredients")
+    await fetch(db)
       .then((res) => {
         return res.json();
       })
@@ -73,10 +69,10 @@ function App() {
       const item = list[curr];
       if (!item.show) {
         console.log("we are adding " + item.name);
-        await fetch("http://localhost:8000/ingredients/" + item.id, {
+        await fetch(db + "/" + item.id, {
           method: "DELETE",
         });
-        await fetch("http://localhost:8000/ingredients", {
+        await fetch(db, {
           method: "POST",
           body: JSON.stringify({
             name: item.name,
@@ -92,20 +88,68 @@ function App() {
       }
     }
 
-    await fetch("http://localhost:8000/ingredients")
+    await fetch(db)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setData(data);
       });
   }
 
-  const btn1 = document.getElementById('nameInputBtn'); 
-  function but1Function() {
-    const txt1 = document.getElementById('nameInput'); 
-    setName(txt1?.value)
+  const nameInputBtn = document.getElementById("nameInputBtn");
+  nameInputBtn?.addEventListener("click", nameInputFunction);
+  function nameInputFunction() {
+    const currName = document.getElementById("nameInput");
+    setName(currName?.value);
+  }
+
+  const [currId, incrementId] = useState(4);
+  useEffect(() => {
+    const foodInputBtn = document.getElementById("foodInputBtn");
+    foodInputBtn?.addEventListener("click", foodInputFunction);
+  }, []);
+  async function foodInputFunction() {
+    const name = document.getElementById("foodInputName");
+    const serving = document.getElementById("foodInputPortion");
+    const type = document.getElementById("foodInputType");
+    const fats = document.getElementById("foodInputFats");
+    const carbs = document.getElementById("foodInputCarbs");
+    const proteins = document.getElementById("foodInputProteins");
+    const obj = {
+      name: name?.value,
+      serving: Number(serving?.value),
+      type: type?.value,
+      fats: Number(fats?.value),
+      carbs: Number(carbs?.value),
+      proteins: Number(proteins?.value),
+      show: true,
+      id: currId.toString(),
+    };
+
+    console.log(obj);
+    await fetch(db, {
+      method: "POST",
+      body: JSON.stringify({
+        name: name?.value,
+        serving: Number(serving?.value),
+        type: type?.value,
+        fats: Number(fats?.value),
+        carbs: Number(carbs?.value),
+        proteins: Number(proteins?.value),
+        show: true,
+        id: currId.toString(),
+      }),
+    });
+
+    incrementId(currId + 1);
+    await fetch(db)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setData(data);
+      });
   }
 
   return (
@@ -126,7 +170,7 @@ function App() {
         placeholder={"Enter Name"}
         color={3}
         id="nameInput"
-        onClick={() => btn1?.addEventListener('click', but1Function)}
+        onClick={() => nameInputBtn?.onclick}
       >
         Enter Name
       </Input>
@@ -149,6 +193,15 @@ function App() {
       <Button color={4} onClick={() => restartFoods()}>
         Restart
       </Button>
+
+      <FoodInput
+        db={db}
+        color={3}
+        id="foodInput"
+        onClick={() => foodInputBtn.onclick}
+      >
+        Enter
+      </FoodInput>
 
       <h2>Sort by</h2>
       <Button

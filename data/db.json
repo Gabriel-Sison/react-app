@@ -1,20 +1,10 @@
 {
   "ingredients": [
     {
-      "id": "2",
-      "name": "Turkey",
-      "serving": 121,
-      "type": "g",
-      "fats": 4,
-      "carbs": 21,
-      "proteins": 50,
-      "show": true
-    },
-    {
       "id": "1",
       "name": "Chicken",
       "serving": 532,
-      "type": "g",
+      "type": "grams",
       "fats": 2,
       "carbs": 42,
       "proteins": 63,
@@ -24,10 +14,20 @@
       "id": "3",
       "name": "Beef",
       "serving": 91,
-      "type": "g",
+      "type": "grams",
       "fats": 21,
       "carbs": 4,
       "proteins": 20,
+      "show": true
+    },
+    {
+      "id": "2",
+      "name": "Turkey",
+      "serving": 121,
+      "type": "grams",
+      "fats": 4,
+      "carbs": 21,
+      "proteins": 50,
       "show": true
     }
   ]

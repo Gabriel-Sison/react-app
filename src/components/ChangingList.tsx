@@ -20,8 +20,7 @@ const ChangingList = ({ list, heading, handleDelete }: Props) => {
                 </div>
                 <div className="col">
                   <p>
-                    {list.serving}
-                    {list.type}
+                    {list.serving} {list.type}
                   </p>
                 </div>
                 <div className="col">
