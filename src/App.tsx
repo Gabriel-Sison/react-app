@@ -1,5 +1,6 @@
 import Alert from "./components/Alert";
 import Button from "./components/Button";
+import Input from "./components/Input.js";
 import { useState } from "react";
 
 import "./basic.css";
@@ -27,7 +28,18 @@ function App() {
     error,
   } = useFetch("http://localhost:8000/ingredients" + foodSort);
 
-  async function handleDelete(id: number, item) {
+  async function handleDelete(
+    id: string,
+    item: {
+      name: any;
+      serving: any;
+      type: any;
+      fats: any;
+      carbs: any;
+      proteins: any;
+      id: any;
+    }
+  ) {
     await fetch("http://localhost:8000/ingredients/" + id, {
       method: "DELETE",
     });
@@ -54,7 +66,7 @@ function App() {
         console.log(data);
         setData(data);
       });
-  };
+  }
 
   async function restartFoods() {
     for (let curr in list) {
@@ -88,7 +100,13 @@ function App() {
         console.log(data);
         setData(data);
       });
-  };
+  }
+
+  const btn1 = document.getElementById('nameInputBtn'); 
+  function but1Function() {
+    const txt1 = document.getElementById('nameInput'); 
+    setName(txt1?.value)
+  }
 
   return (
     <>
@@ -103,6 +121,16 @@ function App() {
       >
         {pressed ? "Lose Weight" : "Maintain Weight"}
       </Button>
+
+      <Input
+        placeholder={"Enter Name"}
+        color={3}
+        id="nameInput"
+        onClick={() => btn1?.addEventListener('click', but1Function)}
+      >
+        Enter Name
+      </Input>
+
       <h1>Hello {name}</h1>
       <p>
         You have a default {calories} calories. You need to eat {goalCal}{" "}

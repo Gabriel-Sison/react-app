@@ -1,10 +1,9 @@
-import { useState } from "react";
 import Button from "./Button";
 
 interface Props {
   list: Object;
   heading: string;
-  handleDelete: (id, list) => void;
+  handleDelete: (id: string, list) => void;
 }
 
 const ChangingList = ({ list, heading, handleDelete }: Props) => {

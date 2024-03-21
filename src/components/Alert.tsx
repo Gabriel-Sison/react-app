@@ -5,9 +5,10 @@ interface Props {
   children: ReactNode;
   name: string;
   color: number;
+  id?: string;
 }
 
-const Alert = ({ children, color, name }: Props) => {
+const Alert = ({ children, color, name, id }: Props) => {
   const [alertVisible, setAlertVisible] = useState(false);
 
   return (
@@ -32,6 +33,7 @@ const Alert = ({ children, color, name }: Props) => {
         onClick={() => {
           setAlertVisible(true);
         }}
+        id={id}
       >
         {name}
       </Button>

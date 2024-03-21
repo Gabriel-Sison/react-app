@@ -1,9 +1,8 @@
-import { useState } from "react";
-
 interface Props {
   children: string;
   color: number;
   onClick: () => void;
+  id?: string;
 }
 
 const colors: string[] = [
@@ -18,24 +17,16 @@ const colors: string[] = [
   "link",
 ];
 
-const Button = ({
-  children,
-  onClick = () => {
-    let x = 1;
-  },
-  color = 0,
-}: Props) => {
-  const [colIdx, setColor] = useState(color);
-
+const Button = ({ children, onClick, color, id}: Props) => {
   return (
     <>
       <button
         type="button"
         onClick={() => {
           onClick();
-          setColor(color);
         }}
-        className={"btn btn-" + colors[colIdx % 9]}
+        className={"btn btn-" + colors[color % 9]}
+        id = {id}
       >
         {children}
       </button>

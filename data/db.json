@@ -11,16 +11,6 @@
       "show": true
     },
     {
-      "id": "3",
-      "name": "Beef",
-      "serving": 91,
-      "type": "g",
-      "fats": 21,
-      "carbs": 4,
-      "proteins": 20,
-      "show": true
-    },
-    {
       "id": "1",
       "name": "Chicken",
       "serving": 532,
@@ -28,6 +18,16 @@
       "fats": 2,
       "carbs": 42,
       "proteins": 63,
+      "show": true
+    },
+    {
+      "id": "3",
+      "name": "Beef",
+      "serving": 91,
+      "type": "g",
+      "fats": 21,
+      "carbs": 4,
+      "proteins": 20,
       "show": true
     }
   ]
