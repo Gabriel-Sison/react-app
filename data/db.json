@@ -1,23 +1,43 @@
 {
   "ingredients": [
     {
-      "id": "6ba2",
-      "name": "Chicken Breast",
-      "serving": 0.25,
-      "type": "Pounds",
-      "fats": 3,
-      "carbs": 0,
-      "proteins": 26,
+      "id": "c1fd",
+      "name": "Beef Dumplings",
+      "serving": 1,
+      "type": "Piece",
+      "fats": 8,
+      "carbs": 36,
+      "proteins": 10,
       "show": true
     },
     {
-      "id": "3cb8",
-      "name": "Sesame Oil",
-      "serving": 15,
-      "type": "Grams",
-      "fats": 14,
+      "id": "b034",
+      "name": "Eggs",
+      "serving": 1,
+      "type": "Egg",
+      "fats": 5,
+      "carbs": 0.6,
+      "proteins": 6,
+      "show": true
+    },
+    {
+      "id": "5b8b",
+      "name": "Chicken Thighs",
+      "serving": 0.25,
+      "type": "Pounds",
+      "fats": 10,
       "carbs": 0,
-      "proteins": 0,
+      "proteins": 19,
+      "show": true
+    },
+    {
+      "id": "e920",
+      "name": "White Rice",
+      "serving": 45,
+      "type": "Grams",
+      "fats": 0,
+      "carbs": 36,
+      "proteins": 3,
       "show": true
     },
     {
@@ -61,6 +81,26 @@
       "show": true
     },
     {
+      "id": "6ba2",
+      "name": "Chicken Breast",
+      "serving": 0.25,
+      "type": "Pounds",
+      "fats": 3,
+      "carbs": 0,
+      "proteins": 26,
+      "show": true
+    },
+    {
+      "id": "3cb8",
+      "name": "Sesame Oil",
+      "serving": 15,
+      "type": "Grams",
+      "fats": 14,
+      "carbs": 0,
+      "proteins": 0,
+      "show": true
+    },
+    {
       "id": "78ae",
       "name": "Fishcakes",
       "serving": 1.5,
@@ -68,46 +108,6 @@
       "fats": 3.5,
       "carbs": 9,
       "proteins": 9,
-      "show": true
-    },
-    {
-      "id": "e920",
-      "name": "White Rice",
-      "serving": 45,
-      "type": "Grams",
-      "fats": 0,
-      "carbs": 36,
-      "proteins": 3,
-      "show": true
-    },
-    {
-      "id": "c1fd",
-      "name": "Beef Dumplings",
-      "serving": 1,
-      "type": "Piece",
-      "fats": 8,
-      "carbs": 36,
-      "proteins": 10,
-      "show": true
-    },
-    {
-      "id": "b034",
-      "name": "Eggs",
-      "serving": 1,
-      "type": "Egg",
-      "fats": 5,
-      "carbs": 0.6,
-      "proteins": 6,
-      "show": true
-    },
-    {
-      "id": "5b8b",
-      "name": "Chicken Thighs",
-      "serving": 0.25,
-      "type": "Pounds",
-      "fats": 10,
-      "carbs": 0,
-      "proteins": 19,
       "show": true
     }
   ]
