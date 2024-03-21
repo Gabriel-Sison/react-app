@@ -14,7 +14,7 @@ const ChangingList = ({ list, heading, handleDelete }: Props) => {
         {list.map((list) => {
           if (list.show) {
             return (
-              <div className="row" key={list.id}>
+              <div className="row" key={list.id} draggable>
                 <div className="col">
                   <p>{list.name}:</p>
                 </div>

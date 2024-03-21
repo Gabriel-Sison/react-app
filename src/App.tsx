@@ -59,7 +59,6 @@ function App() {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setData(data);
       });
   }
@@ -97,18 +96,20 @@ function App() {
       });
   }
 
-  const nameInputBtn = document.getElementById("nameInputBtn");
-  nameInputBtn?.addEventListener("click", nameInputFunction);
+  useEffect(() => {
+    const nameInputBtn = document.getElementById("nameInputBtn");
+    nameInputBtn?.addEventListener("click", nameInputFunction);
+  }, []);
   function nameInputFunction() {
     const currName = document.getElementById("nameInput");
     setName(currName?.value);
   }
 
-  const [currId, incrementId] = useState(4);
   useEffect(() => {
     const foodInputBtn = document.getElementById("foodInputBtn");
     foodInputBtn?.addEventListener("click", foodInputFunction);
   }, []);
+
   async function foodInputFunction() {
     const name = document.getElementById("foodInputName");
     const serving = document.getElementById("foodInputPortion");
@@ -116,18 +117,7 @@ function App() {
     const fats = document.getElementById("foodInputFats");
     const carbs = document.getElementById("foodInputCarbs");
     const proteins = document.getElementById("foodInputProteins");
-    const obj = {
-      name: name?.value,
-      serving: Number(serving?.value),
-      type: type?.value,
-      fats: Number(fats?.value),
-      carbs: Number(carbs?.value),
-      proteins: Number(proteins?.value),
-      show: true,
-      id: currId.toString(),
-    };
 
-    console.log(obj);
     await fetch(db, {
       method: "POST",
       body: JSON.stringify({
@@ -138,11 +128,9 @@ function App() {
         carbs: Number(carbs?.value),
         proteins: Number(proteins?.value),
         show: true,
-        id: currId.toString(),
       }),
     });
 
-    incrementId(currId + 1);
     await fetch(db)
       .then((res) => {
         return res.json();
