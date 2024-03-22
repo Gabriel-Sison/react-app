@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Button from "./Button";
+import Input from "./Input";
 
 interface Props {
   list: Object;
@@ -7,6 +9,18 @@ interface Props {
 }
 
 const ChangingList = ({ list, heading, handleDelete }: Props) => {
+  const [x, setX] = useState(0);
+
+  function getInput(name: String, go: boolean) {
+    if (go) {
+      // const input = 0;
+      const input = document.getElementById(name).value;
+      return Number(input);
+    } else {
+      return 0;
+    }
+  }
+
   return (
     <>
       <h1>{heading}</h1>
@@ -16,21 +30,20 @@ const ChangingList = ({ list, heading, handleDelete }: Props) => {
             return (
               <div className="row" key={list.id} draggable>
                 <div className="col">
-                  <p>{list.name}:</p>
+                  <Input placeholder={"Portion"} color={4} id={list.name} onClick={() => this.forceUpdate()}>
+                    {" "}
+                    Enter
+                  </Input>
+                </div>
+                <p className="col">{list.type} of {list.name}</p>
+                <div className="col">
+                  <p>{Math.round(100 * (getInput(list.name, list.show) / list.serving * list.fats)) / 100} F</p>
                 </div>
                 <div className="col">
-                  <p>
-                    {list.serving} {list.type}
-                  </p>
+                  <p>{Math.round(100 * (getInput(list.name, list.show) / list.serving * list.proteins)) / 100} P</p>
                 </div>
                 <div className="col">
-                  <p>{list.fats}F</p>
-                </div>
-                <div className="col">
-                  <p>{list.proteins}P</p>
-                </div>
-                <div className="col">
-                  <p>{list.carbs}C</p>
+                  <p>{Math.round(100 * (getInput(list.name, list.show) / list.serving * list.carbs)) / 100} C</p>
                 </div>
 
                 <div className="col delete">
